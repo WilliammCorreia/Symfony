@@ -12,11 +12,12 @@ class MangaFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
+        $faker = Factory::create();
 
         for ($i = 0; $i < 20; $i++) {
             $manga = new Manga();
             $manga->setPrice(mt_rand(3, 10));
-            $manga->setTitle('Manga', $i);
+            $manga->setTitle($faker->name());
             $manager->persist($manga);
         }
 
