@@ -13,6 +13,8 @@
     </head>
     <body>
 
+        {% include("_nav.html.twig") %}
+
         {% for message in app.flashes('notice') %}
             <div class="flash-notice">
                 {{ message }}

@@ -14,6 +14,7 @@ class MangaType extends AbstractType
         $builder
             ->add('price')
             ->add('title')
+            ->add('category')
         ;
     }
 
