@@ -3,11 +3,17 @@
 {% block title %}Edit Manga{% endblock %}
 
 {% block body %}
-    <h1>Edit Manga</h1>
+    <div class="container mt-4">
+        <h1>Edit Manga</h1>
 
-    {{ include('manga/_form.html.twig', {'button_label': 'Update'}) }}
+        <div class="mb-3">
+            {{ include('manga/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
 
-    <a href="{{ path('app_manga_index') }}">back to list</a>
+        <a href="{{ path('app_manga_index') }}" class="btn btn-secondary">Back to list</a>
 
-    {{ include('manga/_delete_form.html.twig') }}
+        <div class="mt-3">
+            {{ include('manga/_delete_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}
