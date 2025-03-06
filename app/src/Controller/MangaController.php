@@ -35,6 +35,11 @@ final class MangaController extends AbstractController
             $entityManager->persist($manga);
             $entityManager->flush();
 
+            $this->addFlash(
+                'notice',
+                'Your changes were saved!'
+            );
+
             return $this->redirectToRoute('app_manga_index', [], Response::HTTP_SEE_OTHER);
         }
 
