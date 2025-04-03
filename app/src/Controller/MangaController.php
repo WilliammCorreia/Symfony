@@ -32,6 +32,8 @@ final class MangaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $manga->setUser($this->getUser());
+
             $entityManager->persist($manga);
             $entityManager->flush();
 

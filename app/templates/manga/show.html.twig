@@ -33,9 +33,14 @@
 
         <div class="mt-3">
             <a href="{{ path('app_manga_index') }}" class="btn btn-secondary">Back to list</a>
-            <a href="{{ path('app_manga_edit', {'id': manga.id}) }}" class="btn btn-warning">Edit</a>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_manga_edit', {'id': manga.id}) }}" class="btn btn-warning">edit</a>
+            {% endif %}
         </div>
 
-        {{ include('manga/_delete_form.html.twig') }}
+        {% if is_granted('ROLE_ADMIN') %}
+            {{ include('manga/_delete_form.html.twig') }}
+        {% endif %}
     </div>
 {% endblock %}

@@ -33,6 +33,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Manga::class)]
+    private Collection $mangas;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,5 +109,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function __construct()
+    {
+        $this->mangas = new ArrayCollection();
+    }
+
+    public function getMangas(): Collection
+    {
+        return $this->mangas;
+    }
+
+        public function addManga(Manga $manga): static
+    {
+        if (!$this->mangas->contains($manga)) {
+            $this->mangas->add($manga);
+            $manga->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeManga(Manga $manga): static
+    {
+        if ($this->mangas->removeElement($manga)) {
+            // Set the owning side to null (unless already changed)
+            if ($manga->getUser() === $this) {
+                $manga->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

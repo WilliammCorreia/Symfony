@@ -30,6 +30,10 @@ class Manga
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
+    #[ORM\ManyToOne(inversedBy: 'mangas')]
+    #[ORM\JoinColumn(nullable: true)] // IL FAUT QUE JE REMETTE EN FALSE APRèS
+    private ?User $user = null;
+
     #[ORM\PrePersist]
     public function setTimestampsValue(): void
     {
@@ -100,6 +104,18 @@ class Manga
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
