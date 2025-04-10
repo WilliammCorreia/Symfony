@@ -29,7 +29,7 @@
                 <td>{{ manga.title }}</td>
                 <td>
                     <a href="{{ path('app_manga_show', {'id': manga.id}) }}" class="btn btn-primary">show</a>
-                    {% if is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN') or manga.user.id == app.user.id  %}
                         <a href="{{ path('app_manga_edit', {'id': manga.id}) }}" class="btn btn-warning">edit</a>
                     {% endif %}
                 </td>

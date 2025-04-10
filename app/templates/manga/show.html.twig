@@ -28,6 +28,18 @@
                     <th>Title</th>
                     <td>{{ manga.title }}</td>
                 </tr>
+                <tr>
+                    <th>Tags</th>
+                    <td>
+                        {% if manga.tags|length > 0 %}
+                            {% for tag in manga.tags %}
+                                <span class="badge bg-primary">{{ tag.name }}</span>
+                            {% endfor %}
+                        {% else %}
+                            <span>No tags assigned</span>
+                        {% endif %}
+                    </td>
+                </tr>
             </tbody>
         </table>
 
